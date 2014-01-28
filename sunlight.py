@@ -83,13 +83,13 @@ def hearings():
 
 def upcoming_bills():
     r = requests.get(url + 'upcoming_bills', headers=headers)
-    upcoming_bills = r.json()
+    upcoming = r.json()
 
-    print 'The current number of upcoming bills is %d' % upcoming_bills['count']
+    print 'The current number of upcoming bills is %d' % upcoming['count']
     print 'Listed below are the upcoming bills'
     print '=' * 35
 
-    for i in upcoming_bills['results']:
+    for i in upcoming['results']:
         print '\t' + i['bill_id']
 
     print '\n'
