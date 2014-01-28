@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 """Basic test of Sunlight API"""
 
-import simplejson as js
+import json as js
 import requests
 
+with open("conf/settings.json") as apifile:
+    data = js.load(apifile)
 
-headers = {'X-APIKEY': ''}
+headers = {'X-APIKEY': data['API']}
 
 url = 'https://congress.api.sunlightfoundation.com/'
 
@@ -16,7 +18,7 @@ methods = {'l': 'legislators', 'c': 'committees', 'b': 'bills',
            'u': 'upcoming_bills'}
 
 while True:
-    menu = """ Please select one of the following:
+    menu = """ Please select ONE of the following:
                 01. (l)egislators
                 02. (c)ommittees
                 03. (b)ills
@@ -35,7 +37,7 @@ while True:
         else:
             r = requests.get(url + methods[choice], headers=headers)
             response = r.json()
-            print js.dumps(response, sort_keys=True, indent=4 * ' ')
+            print js.dumps(response, sort_keys=True, indent=4)
     except KeyError:
         print 'Invalid selection. Try again or press q to quit'
         continue
@@ -82,7 +84,7 @@ def upcoming_bills():
 
     print '\n'
 
-    print js.dumps(r.json(), sort_keys=True, indent=4 * ' ')
+    print js.dumps(r.json(), sort_keys=True, indent=4)
 
 
 if __name__ == '__main__':
