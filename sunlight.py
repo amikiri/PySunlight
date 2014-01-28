@@ -18,7 +18,7 @@ methods = {'l': 'legislators', 'c': 'committees', 'b': 'bills',
            'u': 'upcoming_bills'}
 
 while True:
-    menu = """ Please select ONE of the following:
+    menu = """ Please select one of the following:
                 01. (l)egislators
                 02. (c)ommittees
                 03. (b)ills
