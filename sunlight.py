@@ -3,6 +3,7 @@
 
 import json as js
 import requests
+from pprint import pprint
 
 with open("conf/settings.json") as apifile:
     data = js.load(apifile)
@@ -45,7 +46,15 @@ def amendments():
 def nominations():
     r = requests.get(url + 'nominations', headers=headers)
     response = r.json()
-    print js.dumps(response, sort_keys=True, indent=4)
+    print '%d nominations' % response['count']
+    pprint(response['results'][0])
+    try:
+        for item in response['results']:
+            print item['nomination_id']
+    except TypeError as err:
+        print '%s' % err
+
+#   print js.dumps(response, sort_keys=True, indent=4)
 
 
 def votes():
@@ -63,7 +72,13 @@ def floor_updates():
 def hearings():
     r = requests.get(url + 'hearings', headers=headers)
     response = r.json()
-    print js.dumps(response, sort_keys=True, indent=4)
+    try:
+        for item in response['results']:
+            print item['description'], item['occurs_at'], item['room']
+            print '\n'
+    except TypeError as err:
+        print '%s' % err
+#    print js.dumps(response, sort_keys=True, indent=4)
 
 
 def upcoming_bills():
@@ -79,7 +94,7 @@ def upcoming_bills():
 
     print '\n'
 
-    print js.dumps(r.json(), sort_keys=True, indent=4)
+    #print js.dumps(r.json(), sort_keys=True, indent=4)
 
 
 def main():
