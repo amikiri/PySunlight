@@ -12,63 +12,58 @@ headers = {'X-APIKEY': data['API']}
 url = 'https://congress.api.sunlightfoundation.com/'
 
 
-methods = {'l': 'legislators', 'c': 'committees', 'b': 'bills',
-           'a': 'amendments', 'n': 'nominations', 'v': 'votes',
-           'f': 'floor_updates', 'h': 'hearings',
-           'u': 'upcoming_bills'}
-
-while True:
-    menu = """ Please select one of the following:
-                01. (l)egislators
-                02. (c)ommittees
-                03. (b)ills
-                04. (a)mendments
-                05. (n)ominations
-                06. (v)otes
-                07. (f)loor updates
-                08. (h)earings
-                09. (u)pcoming bills
-                10. (q)uit
-"""
-    choice = raw_input(menu + '\n>')
-    try:
-        if choice == 'q':
-            break
-        else:
-            r = requests.get(url + methods[choice], headers=headers)
-            response = r.json()
-            print js.dumps(response, sort_keys=True, indent=4)
-    except KeyError:
-        print 'Invalid selection. Try again or press q to quit'
-        continue
+#methods = {'l': 'legislators', 'c': 'committees', 'b': 'bills',
+#           'a': 'amendments', 'n': 'nominations', 'v': 'votes',
+#           'f': 'floor_updates', 'h': 'hearings',
+#           'u': 'upcoming_bills'}
 
 
 def legislators():
-    pass
+    r = requests.get(url + 'legislators', headers=headers)
+    response = r.json()
+    print js.dumps(response, sort_keys=True, indent=4)
 
 
 def committees():
-    pass
+    r = requests.get(url + 'committees', headers=headers)
+    response = r.json()
+    print js.dumps(response, sort_keys=True, indent=4)
 
 
 def bills():
-    pass
+    r = requests.get(url + 'bills', headers=headers)
+    response = r.json()
+    print js.dumps(response, sort_keys=True, indent=4)
 
 
 def amendments():
-    pass
+    r = requests.get(url + 'amendments', headers=headers)
+    response = r.json()
+    print js.dumps(response, sort_keys=True, indent=4)
+
+
+def nominations():
+    r = requests.get(url + 'nominations', headers=headers)
+    response = r.json()
+    print js.dumps(response, sort_keys=True, indent=4)
 
 
 def votes():
-    pass
+    r = requests.get(url + 'votes', headers=headers)
+    response = r.json()
+    print js.dumps(response, sort_keys=True, indent=4)
 
 
 def floor_updates():
-    pass
+    r = requests.get(url + 'floor_updates', headers=headers)
+    response = r.json()
+    print js.dumps(response, sort_keys=True, indent=4)
 
 
 def hearings():
-    pass
+    r = requests.get(url + 'hearings', headers=headers)
+    response = r.json()
+    print js.dumps(response, sort_keys=True, indent=4)
 
 
 def upcoming_bills():
@@ -87,5 +82,46 @@ def upcoming_bills():
     print js.dumps(r.json(), sort_keys=True, indent=4)
 
 
+def main():
+    while True:
+        menu = """ Please select one of the following:
+                01. (l)egislators
+                02. (c)ommittees
+                03. (b)ills
+                04. (a)mendments
+                05. (n)ominations
+                06. (v)otes
+                07. (f)loor updates
+                08. (h)earings
+                09. (u)pcoming bills
+                10. (q)uit
+"""
+        choice = raw_input(menu + '\n>')
+        try:
+            if choice == 'l':
+                legislators()
+            elif choice == 'c':
+                committees()
+            elif choice == 'b':
+                bills()
+            elif choice == 'a':
+                amendments()
+            elif choice == 'n':
+                nominations()
+            elif choice == 'v':
+                votes()
+            elif choice == 'f':
+                floor_updates()
+            elif choice == 'h':
+                hearings()
+            elif choice == 'u':
+                upcoming_bills()
+            elif choice == 'q':
+                break
+        except KeyError:
+            print 'Invalid selection. Try again or press q to quit'
+            continue
+
+
 if __name__ == '__main__':
-    pass
+    main()
