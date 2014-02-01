@@ -18,6 +18,7 @@ url = 'https://congress.api.sunlightfoundation.com/'
 
 # method to retrieve list of legislators
 def legislators():
+    """ This is a docstring """
     r = requests.get(url + 'legislators', headers=headers)
     response = r.json()
     print js.dumps(response, sort_keys=True, indent=4)
@@ -25,6 +26,7 @@ def legislators():
 
 # method to retrieve list of committees
 def committees():
+    """ This is a docstring """
     r = requests.get(url + 'committees', headers=headers)
     response = r.json()
     print js.dumps(response, sort_keys=True, indent=4)
@@ -32,6 +34,7 @@ def committees():
 
 # method to retrieve list of bills
 def bills():
+    """ This is a docstring """
     r = requests.get(url + 'bills', headers=headers)
     response = r.json()
     print js.dumps(response, sort_keys=True, indent=4)
@@ -39,6 +42,7 @@ def bills():
 
 # method to retrieve list of amendments
 def amendments():
+    """ This is a docstring """
     r = requests.get(url + 'amendments', headers=headers)
     response = r.json()
     print js.dumps(response, sort_keys=True, indent=4)
@@ -46,6 +50,7 @@ def amendments():
 
 # method to retrieve list of nominations
 def nominations():
+    """ This is a docstring """
     r = requests.get(url + 'nominations', headers=headers)
     response = r.json()
     print '%d nominations' % response['count']
@@ -61,6 +66,7 @@ def nominations():
 
 # method to retrieve list of votes
 def votes():
+    """ This is a docstring """
     r = requests.get(url + 'votes', headers=headers)
     response = r.json()
     print js.dumps(response, sort_keys=True, indent=4)
@@ -68,6 +74,7 @@ def votes():
 
 # method to retrieve list of updates from the floor
 def floor_updates():
+    """ This is a docstring """
     r = requests.get(url + 'floor_updates', headers=headers)
     response = r.json()
     print js.dumps(response, sort_keys=True, indent=4)
@@ -75,6 +82,7 @@ def floor_updates():
 
 # method to retrieve list of upcoming hearings
 def hearings():
+    """ This is a docstring """
     r = requests.get(url + 'hearings', headers=headers)
     response = r.json()
     # parse the data to print only the description, time and location
@@ -90,6 +98,7 @@ def hearings():
 
 # method to retrieve list of upcoming bills
 def upcoming_bills():
+    """ This is a docstring """
     r = requests.get(url + 'upcoming_bills', headers=headers)
     upcoming = r.json()
 
@@ -106,6 +115,7 @@ def upcoming_bills():
 
 
 def main():
+    """ This is a docstring """
     while True:
         menu = """ Please select one of the following:
                 01. (l)egislators
