@@ -5,44 +5,46 @@ import json as js
 import requests
 from pprint import pprint
 
+# open settings file to retrieve API key
 with open("conf/settings.json") as apifile:
     data = js.load(apifile)
 
+# set custom header to use API key
 headers = {'X-APIKEY': data['API']}
 
+# API URL
 url = 'https://congress.api.sunlightfoundation.com/'
 
 
-#methods = {'l': 'legislators', 'c': 'committees', 'b': 'bills',
-#           'a': 'amendments', 'n': 'nominations', 'v': 'votes',
-#           'f': 'floor_updates', 'h': 'hearings',
-#           'u': 'upcoming_bills'}
-
-
+# method to retrieve list of legislators
 def legislators():
     r = requests.get(url + 'legislators', headers=headers)
     response = r.json()
     print js.dumps(response, sort_keys=True, indent=4)
 
 
+# method to retrieve list of committees
 def committees():
     r = requests.get(url + 'committees', headers=headers)
     response = r.json()
     print js.dumps(response, sort_keys=True, indent=4)
 
 
+# method to retrieve list of bills
 def bills():
     r = requests.get(url + 'bills', headers=headers)
     response = r.json()
     print js.dumps(response, sort_keys=True, indent=4)
 
 
+# method to retrieve list of amendments
 def amendments():
     r = requests.get(url + 'amendments', headers=headers)
     response = r.json()
     print js.dumps(response, sort_keys=True, indent=4)
 
 
+# method to retrieve list of nominations
 def nominations():
     r = requests.get(url + 'nominations', headers=headers)
     response = r.json()
@@ -57,21 +59,26 @@ def nominations():
 #   print js.dumps(response, sort_keys=True, indent=4)
 
 
+# method to retrieve list of votes
 def votes():
     r = requests.get(url + 'votes', headers=headers)
     response = r.json()
     print js.dumps(response, sort_keys=True, indent=4)
 
 
+# method to retrieve list of updates from the floor
 def floor_updates():
     r = requests.get(url + 'floor_updates', headers=headers)
     response = r.json()
     print js.dumps(response, sort_keys=True, indent=4)
 
 
+# method to retrieve list of upcoming hearings
 def hearings():
     r = requests.get(url + 'hearings', headers=headers)
     response = r.json()
+    # parse the data to print only the description, time and location
+    # of the hearing
     try:
         for item in response['results']:
             print item['description'], item['occurs_at'], item['room']
@@ -81,6 +88,7 @@ def hearings():
 #    print js.dumps(response, sort_keys=True, indent=4)
 
 
+# method to retrieve list of upcoming bills
 def upcoming_bills():
     r = requests.get(url + 'upcoming_bills', headers=headers)
     upcoming = r.json()
@@ -133,6 +141,9 @@ def main():
                 upcoming_bills()
             elif choice == 'q':
                 break
+            else:
+                print 'Invalid selection. Try again or press q to quit'
+                continue
         except KeyError:
             print 'Invalid selection. Try again or press q to quit'
             continue
