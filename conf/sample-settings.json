@@ -1,0 +1,9 @@
+// Copy to conf/settings.json
+// and fill these in with your login details!
+{
+  "db": {
+    "username": "",
+    "password": ""
+  },
+  "API": ""
+}
