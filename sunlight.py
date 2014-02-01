@@ -129,7 +129,7 @@ def main():
                 09. (u)pcoming bills
                 10. (q)uit
 """
-        choice = raw_input(menu + '\n>')
+        choice = raw_input(menu + '\n>').lower()
         try:
             if choice == 'l':
                 legislators()
