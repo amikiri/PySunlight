@@ -1,6 +1,6 @@
 #PySunlight
 
-This small program is intended for exploration of the [Congress API](http://sunlightlabs.github.io/congress/) from the [Sunlight Foundation](http://sunlightfoundation.com) as well as a personal teaching tool for learning to program with Python.
+This small program is intended for exploration of the [Congress API](https://sunlightlabs.github.io/congress/) from the [Sunlight Foundation](http://sunlightfoundation.com) as well as a personal teaching tool for learning to program with Python.
 
 
 ###Dependencies for this module include
